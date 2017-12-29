@@ -22,7 +22,7 @@ if (getMobileOperatingSystem() == "Android") {
     api = remote_api;
 }
 else {
-    api = local_api;
+    api = remote_api;
 }
 $('#remove').on('click', function () {
     if (confirm("Are you sure to remove?\nSubscribe as stockist can be find in setting.")) {
