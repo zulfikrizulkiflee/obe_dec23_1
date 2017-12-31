@@ -249,6 +249,14 @@ module.exports = [
     "clobbers": [
       "FCMPlugin"
     ]
+  },
+  {
+    "id": "cordova-plugin-keyboard.keyboard",
+    "file": "plugins/cordova-plugin-keyboard/www/keyboard.js",
+    "pluginId": "cordova-plugin-keyboard",
+    "clobbers": [
+      "window.Keyboard"
+    ]
   }
 ];
 module.exports.metadata = 
@@ -260,7 +268,8 @@ module.exports.metadata =
   "cordova-plugin-file": "5.0.0",
   "cordova-plugin-file-transfer": "1.7.0",
   "cordova-plugin-camera": "3.0.0",
-  "cordova-plugin-fcm": "2.1.2"
+  "cordova-plugin-fcm": "2.1.2",
+  "cordova-plugin-keyboard": "1.2.0"
 };
 // BOTTOM OF METADATA
 });

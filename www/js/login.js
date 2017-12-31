@@ -56,7 +56,7 @@ $('#login-submit').on('click', function () {
             localStorage.setItem("obe_sessionID", response[0].obe_id);
             localStorage.setItem("obe_sessionNAME", response[0].user_name);
             localStorage.setItem("obe_sessionROLE", response[0].user_role);
-            localStorage.setItem("obe_sessionSTOCKISTID", response[0].stockist_id);
+            localStorage.setItem("obe_sessionSTOCKISTID", response[0].parent_id);
             localStorage.setItem("obe_sessionSTATUS", response[0].status);
             $('.profile-name').html(response[0].user_name);
             if (response[0].user_img != null) {
@@ -66,6 +66,7 @@ $('#login-submit').on('click', function () {
             $('.profile-callsign').html(response[0].user_callsign)
             $("#preloader").delay(1000).fadeOut("slow").hide();
             $.mobile.navigate('#profile');
+            location.reload();
         }
         else {
             $("#preloader").delay(1000).fadeOut("slow").hide();
@@ -78,21 +79,14 @@ $('#logout-submit').on('click', function () {
         $("#preloader").show();
         $.get(api + 'GO_USER_PROFILE.php?action=destroyToken', {
             obe_id: localStorage.getItem("obe_sessionID")
-        }, function (data) {
-            //            alert(data);
-            //            if(data > 0){
-            //                localStorage.setItem("obe_sessionID", "0");
-            //                $("#preloader").delay(1000).fadeOut("slow").hide();
-            //                $.mobile.navigate("#login");
-            //            }else{
-            //                alert("Oops, something went wrong!");
-            //                $("#preloader").delay(1000).fadeOut("slow").hide();
-            //            }
-        }, function (error) {
+        }, function (data) {}, function (error) {
             console.error(error);
         });
         localStorage.setItem("obe_sessionID", "0");
+        $('.profile-img').attr('src', "images/man.png");
+        $('.preview-img').attr('src', "images/man.png");
         $("#preloader").delay(1000).fadeOut("slow").hide();
         $.mobile.navigate("#login");
+        location.reload();
     }
 });

@@ -101,28 +101,28 @@
                 <div class="profile_picture">
                     <a href="#update-image"><img class="profile-img" src="images/man.png" alt="" style="width:130px;height:130px"> </a>
                     <div class="profile_picture_name">
-                        <h2 class="profile-name">Mohd Fauzie</h2>
-                        <p class="profile-callsign">mh_fauzie</p>
+                        <h2 class="profile-name"></h2>
+                        <p class="profile-callsign"></p>
                     </div> <span><a href="#setting"> <img src="images/settings.png" alt=""> </a></span> </div>
                 <div class="articles_list">
                     <ul>
                         <li>
                             <a href="#show-new" class="red"> <i style="color: #9099B7">new</i>
-                                <br>68</a>
+                                <br><span class="new-count">0</span></a>
                         </li>
                         <li>
                             <a href="#show-complete" class="purple"> <i style="color: #9099B7">completed</i>
-                                <br>45</a>
+                                <br><span class="complete-count">0</span></a>
                         </li>
                         <li>
                             <a href="#show-total" class="yellow"> <i style="color: #9099B7">total</i>
-                                <br>173</a>
+                                <br><span class="total-count">0</span></a>
                         </li>
                         <div class="clear"></div>
                     </ul>
                 </div>
             </div>
-            <div class="column_middle" data-user="agent">
+            <div class="column_middle" data-user="agent-new">
                 <div class="sign_in" style="position: relative">
                     <a href="#be_stockist">
                         <input type="button" value="Be A Stockist" style="width:100%;"> </a><span style="position: absolute; right: 13px; top:13px;"><img src="images/cancel.png" id="remove" alt=""></span> </div>
@@ -131,13 +131,8 @@
                 <div class="weather">
                     <h3 style="position: relative;background: #35aadc;"><span style="position: absolute; padding: 12px; left: 0; top:0;"><a href="#all-agent"> <img src="images/list.png" alt="" style="width: 24px;height: 24px;"> </a></span>Top Agents<span style="position: absolute; padding: 12px; right: 0; top:0;"><a href="#add-agent"> <img src="images/plus.png" alt=""> </a></span></h3>
                     <div class="temp_list">
-                        <ul>
-                            <li>
-                                <a href="#agent-detail">
-                                    <label class="digits" style="float: left;"> agent_a </label><span class="day_name" style="float: right">1000 pcs</span>
-                                    <div class="clear"></div>
-                                </a>
-                            </li>
+                        <ul class="agent_list">
+                            
                         </ul>
                     </div>
                 </div>
@@ -147,8 +142,7 @@
                     <h3 style="position: relative;background: #ec3d68">Incoming Orders</h3>
                     <div class="temp_list">
                         <ul class="incoming-order">
-                            <li><a href="#order-detail"><span class="day_name">29/06/17</span>&nbsp; 10.45am 
-                                <label class="digits"> agent_a </label><div class="clear"></div></a></li>
+                            
                         </ul>
                         <ul>
                             <li style="text-align: center"><a href="#incoming-order" style="padding: 10px;">Click to view all</a></li>
@@ -405,10 +399,10 @@
         <div class="wrap">
             <div class="column_left">
                 <div class="menu_box">
-                    <h3 style="position: relative;background: #35aadc;"><span style="position: absolute; padding: 15px; left: 0; top:0;"><a class="go-back" href="#"> <img src="images/arrow-left.png" alt=""> </a></span>All Agents</h3>
+                    <h3 style="position: relative;background: #35aadc;"><span style="position: absolute; padding: 15px; left: 0; top:0;"><a  href="#profile"> <img src="images/arrow-left.png" alt=""> </a></span>All Agents</h3>
                     <div class="menu_box_list">
-                        <ul>
-                            <li><a href="#agent-detail">Agent A<label class="digits" style="background: #4eb75c;">Active</label></a></li>
+                        <ul class="agent_list">
+                            
                         </ul>
                     </div>
                 </div>
@@ -456,15 +450,17 @@
                 <div class="menu_box">
                     <h3 style="position: relative;background: #11a8ab;"><span style="position: absolute; padding: 15px; left: 0; top:0;"><a class="go-back" href="#"> <img src="images/arrow-left.png" alt=""> </a></span>Order Detail</h3>
                     <div class="temp_list">
-                        <ul>
-                            <li><a href="#"><span class="agent_name">Agent A</span> 
-                                <label class="username"> agent_a </label><div class="clear"></div></a> </li>
+                        <ul class="order-detail">
+                            <li><a href="#"><span>Order ID</span><label class="status-badge" style="margin-top: -5px;"></label> 
+                                <label class="id_order"></label><div class="clear"></div></a> </li>
+                            <li><a href="#"><span class="agent_name"></span> 
+                                <label class="username"></label><div class="clear"></div></a> </li>
                             <li><a href="#"><span>Date</span> 
-                                <label class="date_join"> 20/12/17 </label><div class="clear"></div></a> </li>
-                            <li><a href="#"><span>Time</span> 
-                                <label class="total_order"> 10.45am </label><div class="clear"></div></a> </li>
-                            <li><a href="#"><span>Quantity</span> 
-                                <label class="last_order"> 100pcs </label><div class="clear"></div></a> </li>
+                                <label class="time_order"></label><label class="date_order"></label><div class="clear"></div></a> </li>
+                            <li><a href="#quantity-break"><span>Product Quantity</span> 
+                                <label class="p-quantity_order"></label><div class="clear"></div></a> </li>
+                            <li><a href="#"><span>Marketing Quantity</span> 
+                                <label class="m-quantity_order"></label><div class="clear"></div></a> </li>
                         </ul>
                     </div>
                     <div class="signin_facebook">
@@ -536,7 +532,7 @@
                                         <table>
                                             <tr>
                                                 <td style="padding-right: 5px;">3</td>
-                                                <td>Your account will be activated within 24 hours.<br><br>PS: If not, just contact the developer via email at zulfikrizulkiflee@gmail.com</td>
+                                                <td>Your account will be activated within 24 hours.<br><br>PS: If not, just contact the developer via email at obe@zfikri.tk</td>
                                             </tr>
                                         </table>
                                     </span> </a>
@@ -558,7 +554,7 @@
                         <ul>
                             <li><a href="#edit-profile" class="account_settings"><span>Edit Profile</span></a></li>
                             <li><a href="#account-info" class="events"><span>Account Info<label class="digits" style="background: #4eb75c;">Active</label></span></a></li>
-                            <li data-user="agent"><a href="#be_stockist" class="upgrade"><span>Be A Stockist</span></a></li>
+                            <li data-user="agent-new"><a href="#be_stockist" class="upgrade"><span>Be A Stockist</span></a></li>
                             <li><a href="#" class="statistics" id="logout-submit"><span>Logout</span></a></li>
                         </ul>
                     </div>

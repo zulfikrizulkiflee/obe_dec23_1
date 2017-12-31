@@ -1,3 +1,16 @@
+$(document).on('pagebeforechange', function (e, data) {
+    var to = data.toPage
+    , from = data.options.fromPage;
+    if (typeof to === 'string') {
+        var u = $.mobile.path.parseUrl(to);
+        to = u.hash || '#' + u.pathname.substring(1);
+        if (from) from = '#' + from.attr('id');
+        if (to === "#order-detail") {
+            
+        }
+    }
+});
+
 var local_api = "api/";
 var remote_api = "http://www.zfikri.tk/obe_api/";
 var api = "";
@@ -22,7 +35,7 @@ if (getMobileOperatingSystem() == "Android") {
     api = remote_api;
 }
 else {
-    api = local_api;
+    api = remote_api;
 }
 $('#remove').on('click', function () {
     if (confirm("Are you sure to remove?\nSubscribe as stockist can be find in setting.")) {
@@ -48,20 +61,25 @@ var productName = ['Brest Garden', 'Caen Lemon', 'Honey Paris', 'La Rochelle', '
 var productImg = ['brest-garden', 'caen-lemon', 'honey-paris', 'la-rochelle', 'le-havre', 'le-mans', 'lille-vanilla', 'lorraine-lime', 'lyanne-reims', 'lyon-air', 'marseille-lavender', 'nancy-strawberry', 'orly-orange', 'toulouse-apple'];
 $('.product-list').html("");
 for (i = 0; i < productName.length; i++) {
-    var str = '<li> <a href="#" data-product="' + productImg[i] + '"> <table style="width: 100%"> <tr> <td style="width: 35%;padding:0;"><img src="images/fleur/' + productImg[i] + '.jpeg" style="width: 80px;height: 80px;border: 3px solid #50597b;border-radius: 50%;"></td> <td style="width:65%;padding:0 0 0 10px;vertical-align:top;color:#fff;"> <p style="font-size: 1.3em">' + productName[i] + '</p> <p><span class="product-order" style="margin: 0;position: absolute;width: 50%;"> <input type="number" name="order_quantity" style="width:65%;padding:3px 10px;text-align: right;" maxlength="5"> <i>pcs</i> </span> </p> </td> </tr> </table> <div class="clear"></div> </a> </li>';
+    var str = '<li> <a href="#" data-item="' + productImg[i] + '" data-type="product"> <table style="width: 100%"> <tr> <td style="width: 35%;padding:0;"><img src="images/fleur/' + productImg[i] + '.jpeg" style="width: 80px;height: 80px;border: 3px solid #50597b;border-radius: 50%;"></td> <td style="width:65%;padding:0 0 0 10px;vertical-align:top;color:#fff;"> <p style="font-size: 1.3em">' + productName[i] + '</p> <p><span class="product-order" style="margin: 0;position: absolute;width: 50%;"> <input type="number" name="order_quantity" style="width:65%;padding:3px 10px;text-align: right;" maxlength="5"> <i>pcs</i> </span> </p> </td> </tr> </table> <div class="clear"></div> </a> </li>';
     $('.product-list').append(str);
 }
 var marketingName = ['Tester', 'Flyers', 'Poster', 'Standee', 'Rolls Up', 'T-stand'];
 var marketingImg = ['tester', 'flyers', 'poster', 'standee', 'rolls-up-t-stand', 'rolls-up-t-stand'];
 $('.marketing-list').html("");
 for (i = 0; i < marketingName.length; i++) {
-    var str = '<li> <a href="#" data-marketing="' + marketingImg[i] + '"> <table style="width: 100%"> <tr> <td style="width: 35%;padding:0;"><img src="images/marketing/' + marketingImg[i] + '.jpeg" style="width: 80px;height: 80px;border: 3px solid #50597b;border-radius: 50%;"></td> <td style="width:65%;padding:0 0 0 10px;vertical-align:top;color:#fff;"> <p style="font-size: 1.3em">' + marketingName[i] + '</p> <p><span class="marketing-order" style="margin: 0;position: absolute;width: 50%;"> <input type="number" name="order_quantity" style="width:65%;padding:3px 10px;text-align: right;" maxlength="5"> <i>pcs</i> </span> </p> </td> </tr> </table> <div class="clear"></div> </a> </li>';
+    var str = '<li> <a href="#" data-item="' + marketingImg[i] + '" data-type="marketing"> <table style="width: 100%"> <tr> <td style="width: 35%;padding:0;"><img src="images/marketing/' + marketingImg[i] + '.jpeg" style="width: 80px;height: 80px;border: 3px solid #50597b;border-radius: 50%;"></td> <td style="width:65%;padding:0 0 0 10px;vertical-align:top;color:#fff;"> <p style="font-size: 1.3em">' + marketingName[i] + '</p> <p><span class="marketing-order" style="margin: 0;position: absolute;width: 50%;"> <input type="number" name="order_quantity" style="width:65%;padding:3px 10px;text-align: right;" maxlength="5"> <i>pcs</i> </span> </p> </td> </tr> </table> <div class="clear"></div> </a> </li>';
     $('.marketing-list').append(str);
 }
 $('.main').on('pagebeforeshow', function (event, data) {
     var prevPage = data.prevPage.attr('id');
     $('.go-back').attr('href', "#" + prevPage);
 });
+
+$('#add-agent .go-back').bind('click',function(){
+   location.reload(); 
+});
+
 // take picture from camera
 $('.but_take').each(function () {
     $(this).on('click', function () {
@@ -111,9 +129,9 @@ $('.upload-profile-img').each(function () {
             ft.upload(imageFile, "http://www.zfikri.tk/obe_api/upload.php?obe_id=" + localStorage.getItem('obe_sessionID'), function (result) {
                 $('.profile-img').attr('src', imageFile + '?' + Math.random());
                 $("#preloader").delay(1000).fadeOut("slow").hide();
-//                alert('successfully uploaded ' + result.response);
+                //                alert('successfully uploaded ' + result.response);
             }, function (e) {
-//                alert('error : ' + JSON.stringify(error));
+                //                alert('error : ' + JSON.stringify(error));
                 $("#preloader").delay(1000).fadeOut("slow").hide();
                 e.preventDefault();
                 alert('Oops, something went wrong!');
@@ -131,14 +149,26 @@ function onSuccess(imageURI) {
 }
 
 function onFail(message) {
-//    alert('Failed because: ' + message);
+    //    alert('Failed because: ' + message);
 }
-
-$('.cancel-img-update').on('click',function(){
-   $('.preview-img').attr('src',$('.profile-img').attr('src')); 
+$('.cancel-img-update').on('click', function () {
+    $('.preview-img').attr('src', $('.profile-img').attr('src'));
 });
-//$('[data-user=stockist]').hide();
-//$('[data-user=agent]').hide();
+if (localStorage.getItem("obe_sessionROLE") == "Agent") {
+    $('[data-user=stockist]').hide();
+    $('[data-user=agent]').show();
+    $('[data-user=agent-new]').show();
+}
+else if (localStorage.getItem("obe_sessionROLE") == "Stockist") {
+    $('[data-user=agent]').hide();
+    $('[data-user=stockist]').show();
+    $('[data-user=agent-new]').hide();
+}
+else {
+    $('[data-user=stockist]').hide();
+    $('[data-user=agent]').hide();
+    $('[data-user=agent-new]').show();
+}
 $('.marketing-list').hide();
 $('#show-marketing-only').on('click', function () {
     $('.marketing-list').show();

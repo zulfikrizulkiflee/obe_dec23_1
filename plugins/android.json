@@ -24,6 +24,9 @@
     },
     "cordova-plugin-fcm": {
       "PACKAGE_NAME": "com.android.obe"
+    },
+    "cordova-plugin-keyboard": {
+      "PACKAGE_NAME": "com.android.obe"
     }
   },
   "dependent_plugins": {

@@ -444,7 +444,7 @@ License URL: http://creativecommons.org/licenses/by/3.0/
                 padding-left: 45px;
             }
             
-            .menu_box_list li a label {
+            .menu_box_list li a label,.status-badge {
                 background: #50597b;
                 color: #FFF;
                 font-size: 1em;
