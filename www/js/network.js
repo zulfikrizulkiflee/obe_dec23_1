@@ -37,6 +37,33 @@ $.get(api + 'GO_STOCKIST_CONTROLLER.php?action=agent_list&sorting=top' + '&obe_i
             $('#profile .agent_list').append(str);
         }
     }
+    $('[href=#agent-detail]').each(function () {
+        $(this).on('click', function () {
+            var agent_id = $(this).attr('data-agent-id');
+            $.get(api + 'GO_STOCKIST_CONTROLLER.php?action=agent_performance' + '&obe_id=' + localStorage.getItem('obe_sessionID'), function (response) {
+                response = JSON.parse(response);
+                console.log(response);
+                for (i = 0; i < response.length; i++) {
+                    if (response[i].obe_id == agent_id) {
+                        $('#agent-detail .agent_name').html(response[i].agent_name);
+                        $('#agent-detail .user_name').html(response[i].user_callsign);
+                        $('#agent-detail .date_join').html(response[i].created_date);
+                        $('#agent-detail .last_order').html(response[i].last_order_date);
+                        $('#agent-detail .last_quantity').html(evadeNull(response[i].last_quantity)+"pcs");
+                        $('#agent-detail .total_order').html(evadeNull(response[i].total_quantity)+"pcs");
+                    }
+                }
+            });
+        });
+        
+        function evadeNull(value){
+            if(value != null){
+                return value;
+            }else{
+                return "0";
+            }          
+        }
+    });
 });
 $.get(api + 'GO_STOCKIST_CONTROLLER.php?action=agent_list' + '&obe_id=' + localStorage.getItem('obe_sessionID'), function (response) {
     $('#all-agent .agent_list').html("");
@@ -45,17 +72,31 @@ $.get(api + 'GO_STOCKIST_CONTROLLER.php?action=agent_list' + '&obe_id=' + localS
         var str = '<li><a href="#agent-detail" data-agent-id=' + response[i].obe_id + '>' + response[i].agent_name + '<label class="digits" style="background: #4eb75c;">Active</label></a></li>';
         $('#all-agent .agent_list').append(str);
     }
-});
-
-$('[href=agent-detail]').bind('click', function () {
-    var agent_id = $(this).attr('data-agent-id');
-    $.get(api + 'GO_STOCKIST_CONTROLLER.php?action=agent_performance' + '&obe_id=' + localStorage.getItem('obe_sessionID'), function (response) {
-        response = JSON.parse(response);
-        for (i = 0; i < response.length; i++) {
-            if(response[i].obe_id == agent_id){
-                $('#agent-detail .user_name').html(response[i].agent_name);
-                $('#agent-detail .date_join').html(response[i].created_date);
-            }
+    $('[href=#agent-detail]').each(function () {
+        $(this).on('click', function () {
+            var agent_id = $(this).attr('data-agent-id');
+            $.get(api + 'GO_STOCKIST_CONTROLLER.php?action=agent_performance' + '&obe_id=' + localStorage.getItem('obe_sessionID'), function (response) {
+                response = JSON.parse(response);
+                console.log(response);
+                for (i = 0; i < response.length; i++) {
+                    if (response[i].obe_id == agent_id) {
+                        $('#agent-detail .agent_name').html(response[i].agent_name);
+                        $('#agent-detail .user_name').html(response[i].user_callsign);
+                        $('#agent-detail .date_join').html(response[i].created_date);
+                        $('#agent-detail .last_order').html(response[i].last_order_date);
+                        $('#agent-detail .last_quantity').html(evadeNull(response[i].last_quantity)+"pcs");
+                        $('#agent-detail .total_order').html(evadeNull(response[i].total_quantity)+"pcs");
+                    }
+                }
+            });
+        });
+        
+        function evadeNull(value){
+            if(value != null){
+                return value;
+            }else{
+                return "0";
+            }          
         }
     });
 });
