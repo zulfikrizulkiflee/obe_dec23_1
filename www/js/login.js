@@ -12,7 +12,10 @@ $(function () {
                     $('.profile-img').attr('src', "http://www.zfikri.tk/obe_api/upload/" + response[0].user_img);
                     $('.preview-img').attr('src', "http://www.zfikri.tk/obe_api/upload/" + response[0].user_img);
                 }
-                $('.profile-callsign').html(response[0].user_callsign)
+                $('.profile-callsign').html(response[0].user_callsign);
+                $('#edit-profile input[name=user_name]').attr('value',response[0].user_name);
+                $('#edit-profile input[name=user_phone]').attr('value',response[0].user_phone);
+                $('#edit-profile input[name=user_email]').attr('value',response[0].user_email);
                 $("#preloader").delay(1000).fadeOut("slow").hide();
                 $.mobile.navigate('#profile');
             }

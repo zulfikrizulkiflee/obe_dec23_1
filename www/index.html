@@ -172,23 +172,26 @@
             <div class="column_right_grid sign-in">
                 <div class="sign_in">
                     <h3>Edit your profile</h3>
-                    <form> <span>
-                        <i><img src="images/user.png" alt=""></i><input type="text" name="regname" value="Name" onfocus="if (this.value == 'Name'){this.value = '';}" onblur="if (this.value == '') {this.value = 'Name';}">
+                    <form id="edit-profile"> <span>
+                        <i><img src="images/user.png" alt=""></i><input type="text" name="user_name" value="Name" onfocus="if (this.value == 'Name'){this.value = '';}" onblur="if (this.value == '') {this.value = 'Name';}">
                         </span> <span>
-                        <i><img src="images/phone.png" alt=""></i><input type="text" name="regphone" value="Phone Number" onfocus="if (this.value == 'Phone Number'){this.value = '';}" onblur="if (this.value == '') {this.value = 'Phone Number';}">
+                        <i><img src="images/phone.png" alt=""></i><input type="text" name="user_phone" value="Phone Number" onfocus="if (this.value == 'Phone Number'){this.value = '';}" onblur="if (this.value == '') {this.value = 'Phone Number';}">
                         </span> <span>
-                        <i><img src="images/mail.png" alt=""></i><input type="text" name="regemail" value="Email" onfocus="if (this.value == 'Email'){this.value = '';}" onblur="if (this.value == '') {this.value = 'Email';}">
+                        <i><img src="images/mail.png" alt=""></i><input type="text" name="user_email" value="Email" onfocus="if (this.value == 'Email'){this.value = '';}" onblur="if (this.value == '') {this.value = 'Email';}">
                         </span>
+                    </form>
+                       <form id="edit-password">
                         <hr style="width: 90%;">
                         <h4 style="color: #fff;text-transform: uppercase;">Current Password</h4> <span style="position: relative;margin-top:10px;">
-                            <i><img src="images/lock.png" alt=""></i><input type="password" data-input="pwd" name="current-password" value="Password" onfocus="if (this.value == 'Password'){this.value = '';}" onblur="if (this.value == '') {this.value = 'Password';}"><i><img class="show-password" src="images/views.png" alt="" style="position: absolute;right: 10px;top:10px;" ></i>
+                            <i><img src="images/lock.png" alt=""></i><input type="password" data-input="pwd" name="current_password" value="Password" onfocus="if (this.value == 'Password'){this.value = '';}" onblur="if (this.value == '') {this.value = 'Password';}"><i><img class="show-password" src="images/views.png" alt="" style="position: absolute;right: 10px;top:10px;" ></i>
                         </span>
                         <h4 style="color: #fff;text-transform: uppercase;">New Password</h4> <span style="position: relative;margin-top:10px;">
-                            <i><img src="images/lock.png" alt=""></i><input type="password" data-input="pwd" name="new-password" value="Password" onfocus="if (this.value == 'Password'){this.value = '';}" onblur="if (this.value == '') {this.value = 'Password';}"><i><img class="show-password" src="images/views.png" alt="" style="position: absolute;right: 10px;top:10px;" ></i>
-                        </span> </form>
+                            <i><img src="images/lock.png" alt=""></i><input type="password" data-input="pwd" name="new_password" value="Password" onfocus="if (this.value == 'Password'){this.value = '';}" onblur="if (this.value == '') {this.value = 'Password';}"><i><img class="show-password" src="images/views.png" alt="" style="position: absolute;right: 10px;top:10px;" ></i>
+                        </span> 
+                    </form>
                     <div class="signin_facebook">
                         <p style="width: 50%;float: left; border-right: 2px solid #fff;"> <a href="#setting"><i> <img src="images/arrow-left.png" alt=""></i> Cancel</a> </p>
-                        <p style="width: 50%:float: right;"> <a href="#profile">Save <i> <img src="images/arrow-right.png" alt=""></i></a> </p>
+                        <p style="width: 50%:float: right;" class="update-profile"> <a href="#">Save <i> <img src="images/arrow-right.png" alt=""></i></a> </p>
                     </div>
                 </div>
             </div>
@@ -456,10 +459,12 @@
                                 <label class="p-quantity_order"></label><div class="clear"></div></a> </li>
                             <li><a href="#quantity-break"><span>Marketing Quantity</span> 
                                 <label class="m-quantity_order"></label><div class="clear"></div></a> </li>
+                            <li class="complete-wrapper"><a href="#"><span>Completed Date</span> <label class="complete_on"></label><div class="clear"></div></a> </li>
+                            <li><a href="#"><span>Note</span> <label class="order_note"></label><div class="clear"></div></a> </li>
                         </ul>
                     </div>
                     <div class="signin_facebook">
-                        <p style="width: 50%:float: right;"> <a href="#">Completed <i> <img src="images/round-done-button.png" alt=""></i></a> </p>
+                        <p style="width: 50%:float: right;" class="complete-now"> <a href="#">Completed <i> <img src="images/round-done-button.png" alt=""></i></a> </p>
                     </div>
                 </div>
             </div>
@@ -606,6 +611,7 @@
     <script type="text/javascript" src="js/login.js"></script>
     <script type="text/javascript" src="js/order.js"></script>
     <script type="text/javascript" src="js/network.js"></script>
+    <script type="text/javascript" src="js/user.js"></script>
 </body>
 
 </html>
