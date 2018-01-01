@@ -1,12 +1,12 @@
 $(document).on('pagebeforechange', function (e, data) {
-    var to = data.toPage
-    , from = data.options.fromPage;
+    var to = data.toPage,
+        from = data.options.fromPage;
     if (typeof to === 'string') {
         var u = $.mobile.path.parseUrl(to);
         to = u.hash || '#' + u.pathname.substring(1);
         if (from) from = '#' + from.attr('id');
         if (to === "#order-detail") {
-            
+
         }
     }
 });
@@ -33,8 +33,7 @@ function getMobileOperatingSystem() {
 console.log(getMobileOperatingSystem());
 if (getMobileOperatingSystem() == "Android") {
     api = remote_api;
-}
-else {
+} else {
     api = remote_api;
 }
 $('#remove').on('click', function () {
@@ -76,8 +75,8 @@ $('.main').on('pagebeforeshow', function (event, data) {
     $('.go-back').attr('href', "#" + prevPage);
 });
 
-$('#add-agent .go-back').bind('click',function(){
-   location.reload(); 
+$('#add-agent .go-back').bind('click', function () {
+    location.reload();
 });
 
 // take picture from camera
@@ -85,13 +84,13 @@ $('.but_take').each(function () {
     $(this).on('click', function () {
         navigator.camera.cleanup();
         navigator.camera.getPicture(onSuccess, onFail, {
-            quality: 20
-            , targetWidth: 900
-            , targetHeight: 900
-            , allowEdit: true
-            , sourceType: Camera.PictureSourceType.CAMERA
-            , destinationType: Camera.DestinationType.FILE_URL
-            , encodingType: Camera.EncodingType.JPEG
+            quality: 20,
+            targetWidth: 900,
+            targetHeight: 900,
+            allowEdit: true,
+            sourceType: Camera.PictureSourceType.CAMERA,
+            destinationType: Camera.DestinationType.FILE_URL,
+            encodingType: Camera.EncodingType.JPEG
         });
     });
 });
@@ -100,14 +99,27 @@ $('.but_select').each(function () {
     $(this).on('click', function () {
         navigator.camera.cleanup();
         navigator.camera.getPicture(onSuccess, onFail, {
-            quality: 50
-            , targetWidth: 900
-            , targetHeight: 900
-            , sourceType: Camera.PictureSourceType.PHOTOLIBRARY
-            , allowEdit: true
-            , destinationType: Camera.DestinationType.FILE_URI
-            , encodingType: Camera.EncodingType.JPEG
+            quality: 50,
+            targetWidth: 900,
+            targetHeight: 900,
+            sourceType: Camera.PictureSourceType.PHOTOLIBRARY,
+            allowEdit: true,
+            destinationType: Camera.DestinationType.FILE_URI,
+            encodingType: Camera.EncodingType.JPEG
         });
+    });
+});
+// receipt upload select 
+$('#upload-receipt').on('click', function () {
+    navigator.camera.cleanup();
+    navigator.camera.getPicture(receiptonSuccess, onFail, {
+        quality: 50,
+        targetWidth: 900,
+        targetHeight: 900,
+        sourceType: Camera.PictureSourceType.PHOTOLIBRARY,
+        allowEdit: true,
+        destinationType: Camera.DestinationType.FILE_URI,
+        encodingType: Camera.EncodingType.JPEG
     });
 });
 // Change image source and upload photo to server
@@ -148,6 +160,32 @@ function onSuccess(imageURI) {
     imageFile = imageURI;
 }
 
+function receiptonSuccess(imageURI) {
+    if (imageURI != null || imageURI != "") {
+        $("#preloader").show();
+        var options = new FileUploadOptions();
+        options.fileKey = "file";
+        options.fileName = imageURI.substr(imageURI.lastIndexOf('/') + 1);
+        options.mimeType = "image/jpeg";
+        var params = {};
+        params.value1 = "test";
+        params.value2 = "param";
+        options.params = params;
+        options.chunkedMode = false;
+        var ft = new FileTransfer();
+        ft.upload(imageURI, "http://www.zfikri.tk/obe_api/upload-receipt.php?obe_id=" + localStorage.getItem('obe_sessionID'), function (result) {
+            $("#preloader").delay(1000).fadeOut("slow").hide();
+            alert("Payment accepted, please wait for our validation.\nThank you.");
+            //                alert('successfully uploaded ' + result.response);
+        }, function (e) {
+            //                alert('error : ' + JSON.stringify(error));
+            $("#preloader").delay(1000).fadeOut("slow").hide();
+            e.preventDefault();
+            alert('Oops, something went wrong!');
+        }, options);
+    }
+}
+
 function onFail(message) {
     //    alert('Failed because: ' + message);
 }
@@ -158,13 +196,11 @@ if (localStorage.getItem("obe_sessionROLE") == "Agent") {
     $('[data-user=stockist]').hide();
     $('[data-user=agent]').show();
     $('[data-user=agent-new]').show();
-}
-else if (localStorage.getItem("obe_sessionROLE") == "Stockist") {
+} else if (localStorage.getItem("obe_sessionROLE") == "Stockist") {
     $('[data-user=agent]').hide();
     $('[data-user=stockist]').show();
     $('[data-user=agent-new]').hide();
-}
-else {
+} else {
     $('[data-user=stockist]').hide();
     $('[data-user=agent]').hide();
     $('[data-user=agent-new]').show();
