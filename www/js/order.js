@@ -145,12 +145,12 @@ $.get(api + 'GO_ORDER_CONTROLLER.php?action=agent_order_history' + '&obe_id=' + 
                     if (response[i].status == "Completed") {
                         $('.status-badge').css('background', '#11a8ab');
                         $('.id_order').html(response[i].order_id + '&nbsp;');
-                        $('#order-detail .order-detail').append('<li class="complete-date"><a href="#"><span>Completed Date</span> <label class="complete_on">' + response[i].clear_date + '</label><div class="clear"></div></a> </li>');
+                        $('#order-detail .complete-wrapper .complete_on').html(response[i].clear_date);
                         $('#order-detail .signin_facebook').hide();
                     } else if (response[i].status == "New") {
                         $('.id_order').html(response[i].order_id + '&nbsp;');
                         $('.status-badge').css('background', '#e64c65');
-                        $('.complete-date').hide();
+                        $('.complete-wrapper').hide();
                         $('#order-detail .signin_facebook').show();
                     }
 
@@ -246,13 +246,12 @@ $.get(api + 'GO_ORDER_CONTROLLER.php?action=stockist_order_history' + '&obe_id='
             if (response[i].status == "New") {
                 var str2 = '<li><a href="#order-detail" style="position: relative;" data-order-id="' + response[i].order_id + '"><span class="day_name">' + order_date[0] + '/' + order_date[1] + '/' + order_date[2][2] + order_date[2][3] + '</span>&nbsp; ' + response[i].order_time + ' <label class="digits"> ' + response[i].user_name + ' </label><div class="clear"></div><div id="box-' + ioCheck(response[i].agent_id) + '"></div></a> </li>';
                 $('#show-new .new-order').append(str2);
-            }
-            if (response[i].status == "Completed") {
+            }else if (response[i].status == "Completed") {
                 var str2 = '<li><a href="#order-detail" style="position: relative;" data-order-id="' + response[i].order_id + '"><span class="day_name">' + order_date[0] + '/' + order_date[1] + '/' + order_date[2][2] + order_date[2][3] + '</span>&nbsp; ' + response[i].order_time + ' <label class="digits"> ' + response[i].user_name + ' </label><div class="clear"></div><div id="box-' + ioCheck(response[i].agent_id) + '"></div></a> </li>';
                 $('#show-complete .complete-order').append(str2);
             }
             if (response[i].status == "New" || response[i].status == "Completed") {
-                var str2 = '<li><a href="#order-detail" style="position: relative;" data-order-id="' + response[i].order_id + '"><span class="day_name">' + order_date[0] + '/' + order_date[1] + '/' + order_date[2][2] + order_date[2][3] + '</span>&nbsp; ' + response[i].order_time + ' <label class="digits"> ' + response[i].user_name + ' </label><div class="clear"></div><div id="box-' + ioCheck(response[i].agent_id) + '"></div></a> </li>';
+                var str2 = '<li style="position:relative">' + checkOrder(response[i].status) + '<a href="#order-detail" style="position: relative;" data-order-id="' + response[i].order_id + '"><span class="day_name">' + order_date[0] + '/' + order_date[1] + '/' + order_date[2][2] + order_date[2][3] + '</span>&nbsp; ' + response[i].order_time + ' <label class="digits"> ' + response[i].user_name + ' </label><div class="clear"></div><div id="box-' + ioCheck(response[i].agent_id) + '"></div></a> </li>';
                 $('#show-total .total-order').append(str2);
             }
         }
@@ -283,7 +282,7 @@ $.get(api + 'GO_ORDER_CONTROLLER.php?action=stockist_order_history' + '&obe_id='
                     $('.m-quantity_order').html(mquantity + "pcs");
                     $('.status-badge').html(response[i].status);
                     $('.order_note').html(response[i].note);
-                    
+
                     if (response[i].status == "Completed") {
                         $('#order-detail .complete-wrapper').show();
                         $('.status-badge').css('background', '#11a8ab');
@@ -346,6 +345,10 @@ $.get(api + 'GO_ORDER_CONTROLLER.php?action=stockist_order_history' + '&obe_id='
     });
 });
 
+$('[href=#show-new]').bind('click', function () {
+    $('ul').trigger("create");
+});
+
 $('.complete-now').on('click', function () {
     if (confirm("Complete order?")) {
         $('#preloader').show();
@@ -354,7 +357,7 @@ $('.complete-now').on('click', function () {
             if (response == 1) {
                 $("#preloader").delay(1000).fadeOut("slow").hide();
                 alert("Order Completed");
-//                location.reload();
+                //                location.reload();
             }
         });
     }
@@ -375,4 +378,39 @@ function ioCheck(agent_id) {
     } else {
         return "incoming";
     }
+}
+
+$('.search-now').each(function () {
+    $(this).on('click', function () {
+        var value = $(this).parent().parent().find("form input").val();
+        var section = $(this).attr('data-section');
+        searchOrder(value, section);
+    });
+});
+
+function searchOrder(value, section) {
+    if(section == "Completed"){
+        var section_lc = '#show-'+section.toLocaleLowerCase().slice(0,-1)+' .'+section.toLocaleLowerCase().slice(0,-1)+'-order';
+    }else{
+        var section_lc = '#show-'+section.toLocaleLowerCase()+' .'+section.toLocaleLowerCase()+'-order';
+    }
+    $.get(api + 'GO_ORDER_CONTROLLER.php?action=stockist_order_history' + '&obe_id=' + localStorage.getItem('obe_sessionID'), function (response) {
+        response = JSON.parse(response);
+        $(section_lc).html("");
+        $.each(response, function (i, v) {
+            if (section != "Total") {
+                if (v.user_name == value && v.status == section) {
+                    var order_date = response[i].order_date.split("/");
+                    var str = '<li><a href="#order-detail" style="position: relative;" data-order-id="' + v.order_id + '"><span class="day_name">' + order_date[0] + '/' + order_date[1] + '/' + order_date[2][2] + order_date[2][3] + '</span>&nbsp; ' + v.order_time + ' <label class="digits"> ' + v.user_name + ' </label><div class="clear"></div><div id="box-' + ioCheck(v.agent_id) + '"></div></a> </li>';
+                    $(section_lc).append(str);
+                }
+            } else {
+                if (v.user_name == value) {
+                    var order_date = response[i].order_date.split("/");
+                    var str = '<li style="position:relative">'+checkOrder(v.status)+'<a href="#order-detail" style="position: relative;" data-order-id="' + v.order_id + '"><span class="day_name">' + order_date[0] + '/' + order_date[1] + '/' + order_date[2][2] + order_date[2][3] + '</span>&nbsp; ' + v.order_time + ' <label class="digits"> ' + v.user_name + ' </label><div class="clear"></div><div id="box-' + ioCheck(v.agent_id) + '"></div></a> </li>';
+                    $(section_lc).append(str);
+                }
+            }
+        });
+    });
 }

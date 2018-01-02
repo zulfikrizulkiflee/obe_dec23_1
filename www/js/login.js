@@ -21,7 +21,8 @@ $(function () {
             }
             else {
                 $("#preloader").delay(1000).fadeOut("slow").hide();
-                alert("Invalid login");
+//                alert(localStorage.getItem('obe_sessionID'))
+                if(localStorage.getItem('obe_sessionID') != null) alert("Invalid login");
             }
         });
     }
