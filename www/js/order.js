@@ -99,7 +99,6 @@ $.get(api + 'GO_ORDER_CONTROLLER.php?action=agent_order_history' + '&obe_id=' + 
                 $('#profile .outgoing-order').append(str);
             }
             $('#outgoing-order .outgoing-order').append(str);
-
             if (response[i].status == "New") {
                 var str2 = '<li><a href="#order-detail" style="position: relative;" data-order-id="' + response[i].order_id + '"><span class="day_name">' + order_date[0] + '/' + order_date[1] + '/' + order_date[2][2] + order_date[2][3] + '</span>&nbsp; ' + response[i].order_time + ' <label class="digits"> ' + response[i].user_name + ' </label><div class="clear"></div><div id="box-' + ioCheck(response[i].agent_id) + '"></div></a> </li>';
                 $('#show-new .new-order').append(str2);
@@ -345,10 +344,6 @@ $.get(api + 'GO_ORDER_CONTROLLER.php?action=stockist_order_history' + '&obe_id='
     });
 });
 
-$('[href=#show-new]').bind('click', function () {
-    $('ul').trigger("create");
-});
-
 $('.complete-now').on('click', function () {
     if (confirm("Complete order?")) {
         $('#preloader').show();
@@ -394,12 +389,16 @@ function searchOrder(value, section) {
     }else{
         var section_lc = '#show-'+section.toLocaleLowerCase()+' .'+section.toLocaleLowerCase()+'-order';
     }
-    $.get(api + 'GO_ORDER_CONTROLLER.php?action=stockist_order_history' + '&obe_id=' + localStorage.getItem('obe_sessionID'), function (response) {
+    var role = "agent";
+    if(localStorage.getItem('obe_sessionROLE') == "Stockist"){
+        role = "stockist";
+    }
+    $.get(api + 'GO_ORDER_CONTROLLER.php?action='+role+'_order_history' + '&obe_id=' + localStorage.getItem('obe_sessionID'), function (response) {
         response = JSON.parse(response);
         $(section_lc).html("");
         $.each(response, function (i, v) {
             if (section != "Total") {
-                if (v.user_name == value && v.status == section) {
+                if (v.user_name.toLowerCase().indexOf(value.toLowerCase()) >= 0 && v.status == section) {
                     var order_date = response[i].order_date.split("/");
                     var str = '<li><a href="#order-detail" style="position: relative;" data-order-id="' + v.order_id + '"><span class="day_name">' + order_date[0] + '/' + order_date[1] + '/' + order_date[2][2] + order_date[2][3] + '</span>&nbsp; ' + v.order_time + ' <label class="digits"> ' + v.user_name + ' </label><div class="clear"></div><div id="box-' + ioCheck(v.agent_id) + '"></div></a> </li>';
                     $(section_lc).append(str);

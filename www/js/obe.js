@@ -1,13 +1,7 @@
-$(document).on('pagebeforechange', function (e, data) {
-    var to = data.toPage,
-        from = data.options.fromPage;
-    if (typeof to === 'string') {
-        var u = $.mobile.path.parseUrl(to);
-        to = u.hash || '#' + u.pathname.substring(1);
-        if (from) from = '#' + from.attr('id');
-        if (to === "#order-detail") {
-
-        }
+$(document).on('pagechange', function (e, data) {
+    var activePage = $.mobile.activePage.attr('id');
+    if(activePage == "show-new"){
+        
     }
 });
 
