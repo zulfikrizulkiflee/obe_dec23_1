@@ -19,8 +19,8 @@ function onLoad() {
 // device APIs are available
 //
 function onDeviceReady() {
-//    StatusBar.hide();
     StatusBar.backgroundColorByHexString("#1f253d");
+//    StatusBar.hide();
     // Register the event listener
     document.addEventListener("backbutton", onBackKeyDown, false);
 }

@@ -5,7 +5,7 @@
     <meta charset="utf-8" />
     <title></title>
     <link type="text/css" href="css/jquery.mobile.custom.structure.min.css" rel="stylesheet">
-    <link href="css/style.css" rel="stylesheet" type="text/css" media="all" />
+    <link href="css/style.min.css" rel="stylesheet" type="text/css" media="all" />
     <link href="css/nav.css" rel="stylesheet" type="text/css" media="all" />
     <link type="text/css" href="css/jquery-ui.min.css" rel="stylesheet">
     <link href='http://fonts.googleapis.com/css?family=Carrois+Gothic+SC' rel='stylesheet' type='text/css'>
@@ -172,23 +172,26 @@
             <div class="column_right_grid sign-in">
                 <div class="sign_in">
                     <h3>Edit your profile</h3>
-                    <form> <span>
-                        <i><img src="images/user.png" alt=""></i><input type="text" name="regname" value="Name" onfocus="if (this.value == 'Name'){this.value = '';}" onblur="if (this.value == '') {this.value = 'Name';}">
+                    <form id="edit-profile"> <span>
+                        <i><img src="images/user.png" alt=""></i><input type="text" name="user_name" value="Name" onfocus="if (this.value == 'Name'){this.value = '';}" onblur="if (this.value == '') {this.value = 'Name';}">
                         </span> <span>
-                        <i><img src="images/phone.png" alt=""></i><input type="text" name="regphone" value="Phone Number" onfocus="if (this.value == 'Phone Number'){this.value = '';}" onblur="if (this.value == '') {this.value = 'Phone Number';}">
+                        <i><img src="images/phone.png" alt=""></i><input type="text" name="user_phone" value="Phone Number" onfocus="if (this.value == 'Phone Number'){this.value = '';}" onblur="if (this.value == '') {this.value = 'Phone Number';}">
                         </span> <span>
-                        <i><img src="images/mail.png" alt=""></i><input type="text" name="regemail" value="Email" onfocus="if (this.value == 'Email'){this.value = '';}" onblur="if (this.value == '') {this.value = 'Email';}">
+                        <i><img src="images/mail.png" alt=""></i><input type="text" name="user_email" value="Email" onfocus="if (this.value == 'Email'){this.value = '';}" onblur="if (this.value == '') {this.value = 'Email';}">
                         </span>
+                    </form>
+                       <form id="edit-password">
                         <hr style="width: 90%;">
                         <h4 style="color: #fff;text-transform: uppercase;">Current Password</h4> <span style="position: relative;margin-top:10px;">
-                            <i><img src="images/lock.png" alt=""></i><input type="password" data-input="pwd" name="current-password" value="Password" onfocus="if (this.value == 'Password'){this.value = '';}" onblur="if (this.value == '') {this.value = 'Password';}"><i><img class="show-password" src="images/views.png" alt="" style="position: absolute;right: 10px;top:10px;" ></i>
+                            <i><img src="images/lock.png" alt=""></i><input type="password" data-input="pwd" name="current_password" value="Password" onfocus="if (this.value == 'Password'){this.value = '';}" onblur="if (this.value == '') {this.value = 'Password';}"><i><img class="show-password" src="images/views.png" alt="" style="position: absolute;right: 10px;top:10px;" ></i>
                         </span>
                         <h4 style="color: #fff;text-transform: uppercase;">New Password</h4> <span style="position: relative;margin-top:10px;">
-                            <i><img src="images/lock.png" alt=""></i><input type="password" data-input="pwd" name="new-password" value="Password" onfocus="if (this.value == 'Password'){this.value = '';}" onblur="if (this.value == '') {this.value = 'Password';}"><i><img class="show-password" src="images/views.png" alt="" style="position: absolute;right: 10px;top:10px;" ></i>
-                        </span> </form>
+                            <i><img src="images/lock.png" alt=""></i><input type="password" data-input="pwd" name="new_password" value="Password" onfocus="if (this.value == 'Password'){this.value = '';}" onblur="if (this.value == '') {this.value = 'Password';}"><i><img class="show-password" src="images/views.png" alt="" style="position: absolute;right: 10px;top:10px;" ></i>
+                        </span> 
+                    </form>
                     <div class="signin_facebook">
                         <p style="width: 50%;float: left; border-right: 2px solid #fff;"> <a href="#setting"><i> <img src="images/arrow-left.png" alt=""></i> Cancel</a> </p>
-                        <p style="width: 50%:float: right;"> <a href="#profile">Save <i> <img src="images/arrow-right.png" alt=""></i></a> </p>
+                        <p style="width: 50%:float: right;" class="update-profile"> <a href="#">Save <i> <img src="images/arrow-right.png" alt=""></i></a> </p>
                     </div>
                 </div>
             </div>
@@ -265,9 +268,8 @@
             <div class="column_middle">
                 <div class="weather">
                     <div class="temp_list">
-                        <ul>
-                            <li><a href="#order-detail" style="position: relative;"><span class="day_name">29/06/17</span>&nbsp; 10.45am 
-                                <label class="digits"> agent_a </label><div class="clear"></div><div id="box-outgoing"></div></a> </li>
+                        <ul class="complete-order">
+                            
                         </ul>
                     </div>
                 </div>
@@ -293,9 +295,8 @@
             <div class="column_middle">
                 <div class="weather">
                     <div class="temp_list">
-                        <ul>
-                            <li><a href="#order-detail" style="position: relative;"><span class="day_name">29/06/17</span>&nbsp; 10.45am 
-                                <label class="digits"> agent_a </label><div class="clear"></div><div id="box-incoming"></div></a> </li>
+                        <ul class="new-order">
+                            
                         </ul>
                     </div>
                 </div>
@@ -321,11 +322,8 @@
             <div class="column_middle">
                 <div class="weather">
                     <div class="temp_list">
-                        <ul>
-                            <li><a href="#order-detail" style="position: relative;"><span class="day_name">29/06/17</span>&nbsp; 10.45am 
-                                <label class="digits"> agent_a </label><div class="clear"></div><div id="box-incoming"></div></a> </li>
-                            <li><a href="#order-detail" style="position: relative;"><span class="day_name">29/06/17</span>&nbsp; 10.45am 
-                                <label class="digits"> agent_a </label><div class="clear"></div><div id="box-outgoing"></div></a> </li>
+                        <ul class="total-order">
+                            
                         </ul>
                     </div>
                 </div>
@@ -448,7 +446,7 @@
         <div class="wrap">
             <div class="column_left">
                 <div class="menu_box">
-                    <h3 style="position: relative;background: #11a8ab;"><span style="position: absolute; padding: 15px; left: 0; top:0;"><a class="go-back" href="#"> <img src="images/arrow-left.png" alt=""> </a></span>Order Detail</h3>
+                    <h3 style="position: relative;background: #11a8ab;"><span style="position: absolute; padding: 15px; left: 0; top:0;"><a href="#profile"> <img src="images/arrow-left.png" alt=""> </a></span>Order Detail</h3>
                     <div class="temp_list">
                         <ul class="order-detail">
                             <li><a href="#"><span>Order ID</span><label class="status-badge" style="margin-top: -5px;"></label> 
@@ -459,12 +457,33 @@
                                 <label class="time_order"></label><label class="date_order"></label><div class="clear"></div></a> </li>
                             <li><a href="#quantity-break"><span>Product Quantity</span> 
                                 <label class="p-quantity_order"></label><div class="clear"></div></a> </li>
-                            <li><a href="#"><span>Marketing Quantity</span> 
+                            <li><a href="#quantity-break"><span>Marketing Quantity</span> 
                                 <label class="m-quantity_order"></label><div class="clear"></div></a> </li>
+                            <li class="complete-wrapper"><a href="#"><span>Completed Date</span> <label class="complete_on"></label><div class="clear"></div></a> </li>
+                            <li><a href="#"><span>Note</span> <label class="order_note"></label><div class="clear"></div></a> </li>
                         </ul>
                     </div>
                     <div class="signin_facebook">
-                        <p style="width: 50%:float: right;"> <a href="#">Completed <i> <img src="images/round-done-button.png" alt=""></i></a> </p>
+                        <p style="width: 50%:float: right;" class="complete-now"> <a href="#">Completed <i> <img src="images/round-done-button.png" alt=""></i></a> </p>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+    <!-- /page -->
+    <!-- Start of quantity break page -->
+    <div data-role="page" class="main" id="quantity-break" style="padding-top:3%;">
+        <div class="wrap">
+            <div class="column_left">
+                <div class="menu_box">
+                    <h3 style="position: relative;background: #11a8ab;"><span style="position: absolute; padding: 15px; left: 0; top:0;"><a class="go-back" href="#"> <img src="images/arrow-left.png" alt=""> </a></span><span class="quantity-title"></span></h3>
+                    <div class="temp_list">
+                        <ul class="order-detail">
+                            <li><a href="#"><span>Total</span>
+                                <label class="p-quantity_order"></label><label class="m-quantity_order"></label><div class="clear"></div></a> </li>
+                        </ul>
+                        <ul class="product-list-order"> </ul>
+                        <ul class="marketing-list-order"> </ul>
                     </div>
                 </div>
             </div>
@@ -479,20 +498,24 @@
                     <h3 style="position: relative;background: #11a8ab;"><span style="position: absolute; padding: 15px; left: 0; top:0;"><a class="go-back" href="#"> <img src="images/arrow-left.png" alt=""> </a></span>Agent Detail</h3>
                     <div class="temp_list">
                         <ul>
-                            <li><a href="#"><span class="agent_name">Agent A</span> 
-                                <label class="username"> agent_a </label><div class="clear"></div></a> </li>
+                            <li><a href="#"><span class="agent_name"></span> 
+                                <label class="user_name"></label><div class="clear"></div></a> </li>
                             <li><a href="#"><span>Joined</span> 
-                                <label class="date_join"> 20/12/17 </label><div class="clear"></div></a> </li>
+                                <label class="date_join"></label><div class="clear"></div></a> </li>
                             <li><a href="#"><span>Last order</span> 
-                                <label class="last_order"> 100pcs </label><div class="clear"></div></a> </li>
+                                <label class="last_order"></label><div class="clear"></div></a> </li>
+                            <li><a href="#"><span>Last quantity</span> 
+                                <label class="last_quantity"></label><div class="clear"></div></a> </li>
                             <li><a href="#"><span>Total order</span> 
-                                <label class="total_order"> 1000pcs </label><div class="clear"></div></a> </li>
+                                <label class="total_order"></label><div class="clear"></div></a> </li>
                         </ul>
                     </div>
+<!--
                     <div class="signin_facebook">
                         <p style="width: 50%;float: left; border-right: 2px solid #fff;"> <a href="#"><i> <img src="images/disabled.png" alt=""></i> Disable</a> </p>
                         <p style="width: 50%:float: right;"> <a href="#">Remove <i> <img src="images/round-delete-button.png" alt=""></i></a> </p>
                     </div>
+-->
                 </div>
             </div>
         </div>
@@ -506,7 +529,7 @@
                     <h3 style="position: relative;background: #11a8ab;"><span style="position: absolute; padding: 15px; left: 0; top:0;"><a class="go-back" href="#"> <img src="images/arrow-left.png" alt=""> </a></span>Be A Stockist</h3>
                     <div class="temp_list">
                         <ul class="incoming-order">
-                            <li><a href="#"><span class="day_name">Thank you for your interest. Before that you need to know the steps on how to become one of the stockist. Note that our annual fee is RM50. This is only one time payment and you can experience all obe features.</span></a></li>
+                            <li><a href="#"><span class="day_name">Thank you for your interest. Obe is free to be used as an Agent. But if you are a Stockist, the annual subscription fee is only RM49. Let's start:</span></a></li>
                             <li>
                                 <a href="#"> <span class="day_name">
                                         <table>
@@ -522,8 +545,10 @@
                                         <table>
                                             <tr>
                                                 <td style="padding-right: 5px;">2</td>
-                                                <td>Please transfer/deposit RM50 to our account as stated below:<br><br>Account Name: Zulfikri bin Zulkiflee<br>Maybank: 1234567890<br>CIMB: 0123456789<br><br>PS: Note your username with the transaction.</td>
+                                                <td>Please transfer/deposit RM49 for annual subscription fee to our account as stated below:<br><br>Account Name: Zulfikri bin Zulkiflee<br>Maybank: 154080214538<br>CIMB: 7025438830<br><br>PS: Note your username with the transaction.</td>
                                             </tr>
+                                            <tr><td>&nbsp;</td></tr>
+                                            <tr><td></td><td style="text-align: center"><p id="upload-receipt" style="padding:10px;border:2px solid #1f253d;">Upload Payment Receipt</p></td></tr>
                                         </table>
                                     </span> </a>
                             </li>
@@ -585,13 +610,24 @@
         <div id='status'> <img alt='' height='64' src='css/images/ajax-loader.gif' width='64' /> </div>
     </div>
     <!-- end preloader -->
-    <script type="text/javascript" src="js/obe.js"></script>
+<!--
+    <script type="text/javascript" src="js/obe.min.js"></script>
+    <script type="text/javascript" src="cordova.js"></script>
+    <script type="text/javascript" src="js/android-func.min.js"></script>
+    <script type="text/javascript" src="js/register.min.js"></script>
+    <script type="text/javascript" src="js/login.min.js"></script>
+    <script type="text/javascript" src="js/order.min.js"></script>
+    <script type="text/javascript" src="js/network.min.js"></script>
+    <script type="text/javascript" src="js/user.min.js"></script>
+-->
+<script type="text/javascript" src="js/obe.js"></script>
     <script type="text/javascript" src="cordova.js"></script>
     <script type="text/javascript" src="js/android-func.js"></script>
     <script type="text/javascript" src="js/register.js"></script>
     <script type="text/javascript" src="js/login.js"></script>
     <script type="text/javascript" src="js/order.js"></script>
     <script type="text/javascript" src="js/network.js"></script>
+    <script type="text/javascript" src="js/user.js"></script>
 </body>
 
 </html>
