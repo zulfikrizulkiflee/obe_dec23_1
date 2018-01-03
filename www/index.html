@@ -5,7 +5,7 @@
     <meta charset="utf-8" />
     <title></title>
     <link type="text/css" href="css/jquery.mobile.custom.structure.min.css" rel="stylesheet">
-    <link href="css/style.min.css" rel="stylesheet" type="text/css" media="all" />
+    <link href="css/style.css" rel="stylesheet" type="text/css" media="all" />
     <link href="css/nav.css" rel="stylesheet" type="text/css" media="all" />
     <link type="text/css" href="css/jquery-ui.min.css" rel="stylesheet">
     <link href='http://fonts.googleapis.com/css?family=Carrois+Gothic+SC' rel='stylesheet' type='text/css'>
@@ -132,7 +132,7 @@
                     <h3 style="position: relative;background: #35aadc;"><span style="position: absolute; padding: 12px; left: 0; top:0;"><a href="#all-agent"> <img src="images/list.png" alt="" style="width: 24px;height: 24px;"> </a></span>Top Agents<span style="position: absolute; padding: 12px; right: 0; top:0;"><a href="#add-agent"> <img src="images/plus.png" alt=""> </a></span></h3>
                     <div class="temp_list">
                         <ul class="agent_list">
-                            
+
                         </ul>
                     </div>
                 </div>
@@ -142,7 +142,7 @@
                     <h3 style="position: relative;background: #ec3d68">Incoming Orders</h3>
                     <div class="temp_list">
                         <ul class="incoming-order">
-                            
+
                         </ul>
                         <ul>
                             <li style="text-align: center"><a href="#incoming-order" style="padding: 10px;">Click to view all</a></li>
@@ -155,11 +155,19 @@
                     <h3 style="position: relative;background: #11a8ab;">Outgoing Orders<span style="position: absolute; padding: 12px; right: 0; top:0;"><a href="#add-order"> <img src="images/plus.png" alt=""> </a></span></h3>
                     <div class="temp_list">
                         <ul class="outgoing-order">
-                            
+
                         </ul>
                         <ul>
                             <li style="text-align: center"><a href="#outgoing-order" style="padding: 10px;">Click to view all</a></li>
                         </ul>
+                    </div>
+                </div>
+            </div>
+            <div class="column_middle" data-user="super">
+                <div class="weather">
+                    <h3 style="position: relative;background: #e64c65;"><span style="position: absolute; padding: 12px; left: 0; top:0;"></span>New Subscriptions</h3>
+                    <div class="temp_list">
+                        <ul class="new_subs"> </ul>
                     </div>
                 </div>
             </div>
@@ -180,14 +188,14 @@
                         <i><img src="images/mail.png" alt=""></i><input type="text" name="user_email" value="Email" onfocus="if (this.value == 'Email'){this.value = '';}" onblur="if (this.value == '') {this.value = 'Email';}">
                         </span>
                     </form>
-                       <form id="edit-password">
+                    <form id="edit-password">
                         <hr style="width: 90%;">
                         <h4 style="color: #fff;text-transform: uppercase;">Current Password</h4> <span style="position: relative;margin-top:10px;">
                             <i><img src="images/lock.png" alt=""></i><input type="password" data-input="pwd" name="current_password" value="Password" onfocus="if (this.value == 'Password'){this.value = '';}" onblur="if (this.value == '') {this.value = 'Password';}"><i><img class="show-password" src="images/views.png" alt="" style="position: absolute;right: 10px;top:10px;" ></i>
                         </span>
                         <h4 style="color: #fff;text-transform: uppercase;">New Password</h4> <span style="position: relative;margin-top:10px;">
                             <i><img src="images/lock.png" alt=""></i><input type="password" data-input="pwd" name="new_password" value="Password" onfocus="if (this.value == 'Password'){this.value = '';}" onblur="if (this.value == '') {this.value = 'Password';}"><i><img class="show-password" src="images/views.png" alt="" style="position: absolute;right: 10px;top:10px;" ></i>
-                        </span> 
+                        </span>
                     </form>
                     <div class="signin_facebook">
                         <p style="width: 50%;float: left; border-right: 2px solid #fff;"> <a href="#setting"><i> <img src="images/arrow-left.png" alt=""></i> Cancel</a> </p>
@@ -269,7 +277,7 @@
                 <div class="weather">
                     <div class="temp_list">
                         <ul class="complete-order">
-                            
+
                         </ul>
                     </div>
                 </div>
@@ -296,7 +304,7 @@
                 <div class="weather">
                     <div class="temp_list">
                         <ul class="new-order">
-                            
+
                         </ul>
                     </div>
                 </div>
@@ -323,7 +331,7 @@
                 <div class="weather">
                     <div class="temp_list">
                         <ul class="total-order">
-                            
+
                         </ul>
                     </div>
                 </div>
@@ -364,7 +372,8 @@
             </div>
             <div class="column_middle">
                 <div class="weather">
-                    <h3 id="show-product-only" style="background: #35aadc;width:40%;display: inline-block;margin-right:3px;">Product</h3><h3 id="show-marketing-only" style="width:40%;display: inline-block;">Marketing</h3>
+                    <h3 id="show-product-only" style="background: #35aadc;width:40%;display: inline-block;margin-right:3px;">Product</h3>
+                    <h3 id="show-marketing-only" style="width:40%;display: inline-block;">Marketing</h3>
                     <div class="temp_list">
                         <ul class="product-list"> </ul>
                         <ul class="marketing-list"> </ul>
@@ -400,7 +409,7 @@
                     <h3 style="position: relative;background: #35aadc;"><span style="position: absolute; padding: 15px; left: 0; top:0;"><a  href="#profile"> <img src="images/arrow-left.png" alt=""> </a></span>All Agents</h3>
                     <div class="menu_box_list">
                         <ul class="agent_list">
-                            
+
                         </ul>
                     </div>
                 </div>
@@ -433,7 +442,7 @@
                     <h3 style="position: relative;background: #11a8ab;"><span style="position: absolute; padding: 15px; left: 0; top:0;"><a href="#profile"> <img src="images/arrow-left.png" alt=""> </a></span>Outgoing Orders</h3>
                     <div class="temp_list">
                         <ul class="outgoing-order">
-                            
+
                         </ul>
                     </div>
                 </div>
@@ -510,7 +519,7 @@
                                 <label class="total_order"></label><div class="clear"></div></a> </li>
                         </ul>
                     </div>
-<!--
+                    <!--
                     <div class="signin_facebook">
                         <p style="width: 50%;float: left; border-right: 2px solid #fff;"> <a href="#"><i> <img src="images/disabled.png" alt=""></i> Disable</a> </p>
                         <p style="width: 50%:float: right;"> <a href="#">Remove <i> <img src="images/round-delete-button.png" alt=""></i></a> </p>
@@ -578,7 +587,7 @@
                     <div class="menu_box_list">
                         <ul>
                             <li><a href="#edit-profile" class="account_settings"><span>Edit Profile</span></a></li>
-                            <li><a href="#account-info" class="events"><span>Account Info<label class="digits" style="background: #4eb75c;">Active</label></span></a></li>
+                            <li><a href="#account-info" class="events"><span>Account Info<label class="account-status" style=""></label></span></a></li>
                             <li data-user="agent-new"><a href="#be_stockist" class="upgrade"><span>Be A Stockist</span></a></li>
                             <li><a href="#" class="statistics" id="logout-submit"><span>Logout</span></a></li>
                         </ul>
@@ -596,8 +605,8 @@
                     <h3 style="position: relative;background: #a311ab;"><span style="position: absolute; padding: 15px; left: 0; top:0;"><a href="#setting"> <img src="images/arrow-left.png" alt=""> </a></span>Account Info</h3>
                     <div class="menu_box_list">
                         <ul>
-                            <li><a href="#">Account Status<label class="digits" style="background: #4eb75c;">Active</label></a></li>
-                            <li><a href="#">Expired Date<span style="float:right;">01/01/18</span></a></li>
+                            <li><a href="#">Account Status<label class="account-status" style=""></label></a></li>
+                            <li><a href="#">Expired Date<span class="account-expired" style="float:right;"></span></a></li>
                         </ul>
                     </div>
                 </div>
@@ -610,7 +619,7 @@
         <div id='status'> <img alt='' height='64' src='css/images/ajax-loader.gif' width='64' /> </div>
     </div>
     <!-- end preloader -->
-<!--
+    <!--
     <script type="text/javascript" src="js/obe.min.js"></script>
     <script type="text/javascript" src="cordova.js"></script>
     <script type="text/javascript" src="js/android-func.min.js"></script>
@@ -620,11 +629,12 @@
     <script type="text/javascript" src="js/network.min.js"></script>
     <script type="text/javascript" src="js/user.min.js"></script>
 -->
-<script type="text/javascript" src="js/obe.js"></script>
+    <script type="text/javascript" src="js/obe.js"></script>
     <script type="text/javascript" src="cordova.js"></script>
     <script type="text/javascript" src="js/android-func.js"></script>
     <script type="text/javascript" src="js/register.js"></script>
     <script type="text/javascript" src="js/login.js"></script>
+    <script type="text/javascript" src="js/su-admin.js"></script>
     <script type="text/javascript" src="js/order.js"></script>
     <script type="text/javascript" src="js/network.js"></script>
     <script type="text/javascript" src="js/user.js"></script>

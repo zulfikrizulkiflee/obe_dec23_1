@@ -7,11 +7,14 @@ $(function () {
         }, function (response) {
             if (response != "") {
                 response = JSON.parse(response);
+                console.log(response);
                 $('.profile-name').html(response[0].user_name);
                 if (response[0].user_img != null) {
                     $('.profile-img').attr('src', "http://www.zfikri.tk/obe_api/upload/" + response[0].user_img);
                     $('.preview-img').attr('src', "http://www.zfikri.tk/obe_api/upload/" + response[0].user_img);
                 }
+                $('.account-status').html(response[0].status);
+                $('.account-expired').html(response[0].end_date);
                 $('.profile-callsign').html(response[0].user_callsign);
                 $('#edit-profile input[name=user_name]').attr('value',response[0].user_name);
                 $('#edit-profile input[name=user_phone]').attr('value',response[0].user_phone);

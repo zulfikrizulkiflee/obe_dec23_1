@@ -7,6 +7,7 @@ $(function () {
         }, function (response) {
             if (response != "") {
                 response = JSON.parse(response);
+                console.log(response);
                 $('.profile-name').html(response[0].user_name);
                 if (response[0].user_img != null) {
                     $('.profile-img').attr('src', "http://www.zfikri.tk/obe_api/upload/" + response[0].user_img);
@@ -21,7 +22,8 @@ $(function () {
             }
             else {
                 $("#preloader").delay(1000).fadeOut("slow").hide();
-                alert("Invalid login");
+//                alert(localStorage.getItem('obe_sessionID'))
+                if(localStorage.getItem('obe_sessionID') != null) alert("Invalid login");
             }
         });
     }

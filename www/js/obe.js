@@ -190,14 +190,17 @@ if (localStorage.getItem("obe_sessionROLE") == "Agent") {
     $('[data-user=stockist]').hide();
     $('[data-user=agent]').show();
     $('[data-user=agent-new]').show();
+    $('[data-user=super]').hide();
 } else if (localStorage.getItem("obe_sessionROLE") == "Stockist") {
     $('[data-user=agent]').hide();
     $('[data-user=stockist]').show();
     $('[data-user=agent-new]').hide();
+    $('[data-user=super]').hide();
 } else {
     $('[data-user=stockist]').hide();
     $('[data-user=agent]').hide();
     $('[data-user=agent-new]').show();
+    $('[data-user=super]').hide();
 }
 $('.marketing-list').hide();
 $('#show-marketing-only').on('click', function () {
